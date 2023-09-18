@@ -1,0 +1,28 @@
+embedding_size: 128
+topk: [10]
+valid_metric: mrr@10
+undirected_net: False
+epochs: 120
+metrics: ['Recall', 'NDCG', 'Precision']
+
+load_col:
+    inter: [user_id, item_id]
+    net: [source_id, target_id]
+
+eval_args:
+    split: {'RS': [0.8, 0, 0.2]}
+    group_by: user
+    order: RO
+    mode: full
+
+neg_sampling:
+  uniform: 50
+worker: 0
+gpu_id: 0
+
+socail_network_improvement: True # whether to weight the social network
+
+thresh: 3, 7
+improvement_type: 2 # 0 represents weighting directly by the number of items; 1 represents weighting by the number of items/number of interactions; 2 represents weighting by the number of items/number of friends; 3 represents the average of 1 and 2.
+weighted_type: 2  # 0 represents direct replacement; 1 represents taking the average with the original weight; 2 represents normalizing after multiplying with the original weight.
+file_type: j # b represents union; j represents intersection

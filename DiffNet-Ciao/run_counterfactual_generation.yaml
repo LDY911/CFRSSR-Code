@@ -1,0 +1,27 @@
+embedding_size: 128
+topk: [20]
+valid_metric: mrr@20
+undirected_net: False
+device: cpu
+
+NET_SOURCE_ID_FIELD: source_id
+NET_TARGET_ID_FIELD: target_id
+
+load_col:
+    inter: [user_id, item_id]
+    net: [source_id, target_id]
+
+eval_args:
+    split: {'RS': [0.7, 0.1, 0.2]}
+    group_by: user
+    order: RO
+    mode: full
+
+neg_sampling:
+  uniform: 50
+worker: 0
+
+MODEL_TYPE: ModelType.SOCIAL
+
+pool_workers: 1
+thresh: 2, 1
